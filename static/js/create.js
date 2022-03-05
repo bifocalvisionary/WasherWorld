@@ -8,7 +8,7 @@ function changePic(input) {
     var reader = new FileReader();
 
     reader.onload = function (e) {
-      $('#show-img')
+      $('#show-imgs')
           .attr('src', e.target.result);
       imgURL = e.srcElement.result;
     };

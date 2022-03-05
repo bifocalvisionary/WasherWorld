@@ -43,7 +43,7 @@ def modify_query(origin, **new_values):
 
 @app.route('/')
 def root():
-    return render_template("home.html")
+    return render_template("index.html")
 
 @app.route('/about')
 def about():
@@ -81,7 +81,7 @@ def imgUP():
     data = request.form["url"]
     encoded_data = data.split(',')[1]
     decoded_data = base64.b64decode(encoded_data)
-    filename = "img/" + str(randint(0, 999999999999)) + ".png"
+    filename = "imgs/" + str(randint(0, 999999999999)) + ".png"
     print(filename)
     filepath = UPLOAD_FOLDER + filename
     f = open(filepath, "wb")
