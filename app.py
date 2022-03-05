@@ -45,9 +45,9 @@ def modify_query(origin, **new_values):
 def root():
     return render_template("index.html")
 
-@app.route('/about')
+@app.route('/join_room')
 def about():
-    return render_template("about.html")
+    return render_template("join_room.html")
 
 @app.route("/report")
 @require_login
