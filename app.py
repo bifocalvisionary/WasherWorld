@@ -49,10 +49,10 @@ def root():
 def about():
     return render_template("join_room.html")
 
-@app.route("/report")
+@app.route("/create_room")
 @require_login
 def report():
-    return render_template("report.html")
+    return render_template("create_room.html")
 
 
 @app.route("/report_button", methods=["POST"])
