@@ -64,7 +64,29 @@
 											<br>
 											Find available, working washers and dryers before you drag your basket over.
 										</p>
-										<a href="#" class="btn btn-secondary mt-3">Join A Room</a>
+										<a href="#joinModal" id="joinBtn" class="btn btn-secondary mt-3">Join A Room</a>
+
+										<div id="myModal" class="modal">
+
+										  <!-- Join Modal content -->
+										  <div class="modal-content">
+											<span class="close">&times;</span>
+											  <form>
+												  <div class="row">
+													  <div class="col-sm-6">
+														  <div class="form-group">
+															  <input type="text" class="form-control" id="roomID" placeholder="Room ID*">
+														  </div>
+													  </div>
+												  </div>
+												  <div class="col-sm-12">
+													  <a href="#" class="btn btn-secondary">JOIN ROOM</a>
+												  </div>
+											  </form>
+										  </div>
+
+										</div>
+
 									</div>
 									<div class="mt-5 mt-lg-0">
 										<img src="static/imgs/group.png" alt="marsmello" class="img-fluid" data-aos="zoom-in-up">
@@ -252,5 +274,35 @@
 		<script src="static/vendors/aos/js/aos.js"></script>
 		<script src="static/vendors/jquery-flipster/js/jquery.flipster.min.js"></script>
 		<script src="static/js/template.js"></script>
+
+
+		<script>
+			// Get the modal
+			var modal = document.getElementById("myModal");
+
+			// Get the button that opens the modal
+			var btn = document.getElementById("joinBtn");
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks the button, open the modal
+			btn.onclick = function() {
+			  modal.style.display = "block";
+			}
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			  modal.style.display = "none";
+			}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+		</script>
+
 	</body>
 </html>
