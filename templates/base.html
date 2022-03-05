@@ -3,56 +3,54 @@
 
     <head>
         <meta charset="utf-8">
-        <link rel="shortcut icon" href="static/img/icon.png"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css' ) }}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js' ) }}"></script>
+        <link rel="stylesheet" href="static/vendors/mdi/css/materialdesignicons.min.css">
+		<link rel="stylesheet" href="static/vendors/owl.carousel/css/owl.carousel.css">
+		<link rel="stylesheet" href="static/vendors/owl.carousel/css/owl.theme.default.min.css">
+		<!--<link rel="stylesheet" href="static/vendors/aos/css/aos.css"> -->
+		<link rel="stylesheet" href="static/vendors/jquery-flipster/css/jquery.flipster.css">
+		<link rel="stylesheet" href="static/css/style.css">
+        <link rel="shortcut icon" href="static/imgs/favicon.png" />
         {% block css %}{% endblock %}
 
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}Washer World{% endblock %}</title>
     </head>
-
-    <body>
-        <div id="wrapper">
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item"><a id="home-link" class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a id="source-link" class="nav-link" href="https://github.com/hd1867/CommunityProject" target="_blank">Source Code</a></li>
-                <li class="nav-item"><a id="report-link" class="nav-link" href="/report">Report a Problem</a></li>
-                <li class="nav-item"><a id="about-link" class="nav-link" href="/about">About Us</a></li>
-
-                {% if 'user' in session %}
-                <li class="nav-item"><a id="logout-link" class="nav-link" href="/logout">Logout</a></li>
-                {% else %}
-                <li class="nav-item"><a id="login-link" class="nav-link" href="/login">Login/Sign Up</a></li>
-                {% endif %}
-            </ul>
-
-            {% for message in get_flashed_messages() %}
-
-            <h3 class="text-center alert alert-danger">{{ message }}</h3>
-
-            {% endfor %}
-
-            <br>
-            {% block body %}{% endblock %}
-        </div>
-
-        <script type="text/javascript">
-            document.getElementById("{% block active_link %}{% endblock %}").classList.add("active");
-        </script>
-        {% block js %}{% endblock %}
-
-        <style>
-            body {
-             background-image: url('static/img/base-background.jpg');
-             background-repeat: no-repeat;
-             background-attachment: fixed;
-             background-size: 100% 100%;
-             }
-        </style>
-
+    <body data-spy="scroll" data-target=".navbar" data-offset="50">
+    <div id="mobile-menu-overlay"></div>
+		<nav class="navbar navbar-expand-lg fixed-top">
+			<div class="container">
+				<a class="navbar-brand" href="#"><img src="static/imgs/logo.svg" alt="Washer World"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"><i class="mdi mdi-menu"> </i></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+					<div class="d-lg-none d-flex justify-content-between px-4 py-3 align-items-center">
+						<img src="static/imgs/logo-dark.svg" class="logo-mobile-menu" alt="logo">
+						<a href="javascript:;" class="close-menu"><i class="mdi mdi-close"></i></a>
+					</div>
+					<ul class="navbar-nav ml-auto align-items-center">
+						<li class="nav-item active">
+							<a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<footer class="footer">
+			<div class="footer-bottom">
+				<div class="container">
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="d-flex align-items-center">
+							<img src="static/imgs/logo.svg" alt="logo" class="mr-3">
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<script src="static/vendors/base/vendor.bundle.base.js"></script>
+		<script src="static/vendors/owl.carousel/js/owl.carousel.js"></script>
+		<script src="static/vendors/aos/js/aos.js"></script>
+		<script src="static/vendors/jquery-flipster/js/jquery.flipster.min.js"></script>
+		<script src="static/js/template.js"></script>
     </body>
-
 </html>
