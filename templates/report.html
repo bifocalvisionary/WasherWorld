@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block active_link %}report-link{% endblock %}
+
+{% block body %}
+
+    <ul id="post">
+    <h6 class="text-center"> Quality is important to us, so please be as detailed as possible in your report </h6>
+        <div class ="card">
+                <div class="form-holder">
+                <form action="/report_button" method="POST">
+                    <div class="form-cell">
+                        <textarea type="text" name="report" id="report" rows="4" cols="50"></textarea><br>
+                    </div>
+                     <input type="submit" class="btn" name="submit" value="report">
+                </form>
+                </div>
+        </div>
+    </ul>
+
+{% endblock %}

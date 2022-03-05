@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block active_link %}login-link{% endblock %}
+
+{% block body %}
+<center class="form-holder">
+    <div class="form-cell">
+        <h3 class="text-center">Login</h3>
+        <form action="/auth" method="POST">
+            <div class="form-group">
+                <label for="user">Username:</label><br>
+                <input required type="text" name="user" id="user">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label><br>
+                <input required type="password" name="pwd" id="pwd">
+            </div>
+            <input type="submit" class="btn btn-light" name="submit" value="Login">
+        </form>
+    </div>
+
+    <div class="form-cell">
+        <h3 class="text-center">Sign Up</h3>
+        <form action="/auth" method="POST">
+            <div class="form-group">
+                <label for="user2">Username:</label><br>
+                <input required type="text" name="user" id="user2">
+            </div>
+            <div class="form-group">
+                <label for="pwd2">Password:</label><br>
+                <input required type="password" name="pwd" id="pwd2" onkeyup="checkPassword()">
+            </div>
+            <div class="form-group">
+                <label for="cpwd2">Confirm Password:</label><br>
+                <input required type="password" name="cpwd" id="cpwd2" onkeyup="checkPassword()">
+                <span id="warning" style="color: red;"></span>
+            </div>
+            <input type="submit" id="createSubmit" class="btn btn-light" name="submit" value="Create Account">
+        </form>
+    </div>
+</center>
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript">
+    function checkPassword() {
+        let pass = document.getElementById("pwd2");
+        let confirm = document.getElementById("cpwd2");
+        if (pass.value !== confirm.value) {
+            document.getElementById("warning").innerHTML = "Passwords don't match!";
+            document.getElementById("createSubmit").disabled = true;
+        } else {
+            document.getElementById("warning").innerHTML = "";
+            document.getElementById("createSubmit").disabled = false;
+        }
+    }
+</script>
+
+{% endblock %}

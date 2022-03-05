@@ -1,0 +1,140 @@
+
+hr {
+    background-color: white;}
+    body{background: url( "static/home-background.png") repeat 0 0;
+    color: black;
+}
+
+
+.container {
+    width: 600px;
+}
+
+
+.wrapper {
+    margin: 5vh;
+    background-color: rgba(36, 212, 42, 0.64);
+    border: 1px solid white;
+    padding: 2vh;
+    min-height: 80vh;
+    border-radius: 5vh;
+}
+
+img {
+  border-radius: 8px;
+  width: 400px;
+}
+
+.nav {
+    background-color: azure;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.container .row button {
+    line-height: 3em;
+}
+
+.card {
+    background-color: rgba(240, 255, 255, .8);
+    margin: 10vh;
+    padding: 5vh;
+    border-style: inset;
+    color: black;
+    width: 80%;
+    position: relative;
+    left: 10vh;
+}
+
+label {
+  width: 80%;
+}
+
+button {
+    font-family: sans-serif;
+    border-radius: 5vh;
+    background-color: rgba(240, 255, 255, .8);
+    min-height: 50px;
+    min-width: 200px;
+    border-color: black;
+    border-style: solid;
+    color: black;
+
+}
+
+.container.center{
+    position: center;
+}
+
+.gallery{
+    float: left;
+    width: 180px;
+}
+
+.gallery img{
+    width: 100%;
+    height: auto;
+}
+
+.btn {
+    font-family: sans-serif;
+    border-radius: 5vh;
+    background-color: rgba(240, 255, 255, .8);
+    min-height: 50px;
+    min-width: 200px;
+    border-color: black;
+    border-style: solid;
+    color: black;
+}
+
+.btn-light {
+    border: solid 1px #d7d7d7;
+}
+
+.form-holder {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    color: black;
+}
+
+.form-holder .form-cell {
+    border: solid 1px #d7d7d7;
+    border-radius: 20px;
+    float: left;
+    background-color: rgba(240, 255, 255, .8);
+    padding: 3em;
+    margin: 0 1em;
+    color: black;
+}
+
+.form-holder .form-cell input[type=text], .form-holder .form-cell input[type=password] {
+    width: 20em;
+}
+
+@media screen and (max-width: 900px) {
+    .form-holder {
+        display: block;
+    }
+    .form-holder .form-cell {
+        display: block;
+        float: none;
+        width: 80%;
+        margin: auto;
+        font-size: 3vw;
+        text-align: center;
+    }
+}
+
+.grip-container {
+    display: grid;
+    grid-gap: 100px;
+}
+
+textarea {
+    min-width: 80%;
+}

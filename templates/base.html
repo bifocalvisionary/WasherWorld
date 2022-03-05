@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="static/img/icon.png"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css' ) }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js' ) }}"></script>
+        {% block css %}{% endblock %}
+
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item"><a id="home-link" class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a id="source-link" class="nav-link" href="https://github.com/hd1867/CommunityProject" target="_blank">Source Code</a></li>
+                <li class="nav-item"><a id="report-link" class="nav-link" href="/report">Report a Problem</a></li>
+                <li class="nav-item"><a id="about-link" class="nav-link" href="/about">About Us</a></li>
+
+                {% if 'user' in session %}
+                <li class="nav-item"><a id="logout-link" class="nav-link" href="/logout">Logout</a></li>
+                {% else %}
+                <li class="nav-item"><a id="login-link" class="nav-link" href="/login">Login/Sign Up</a></li>
+                {% endif %}
+            </ul>
+
+            {% for message in get_flashed_messages() %}
+
+            <h3 class="text-center alert alert-danger">{{ message }}</h3>
+
+            {% endfor %}
+
+            <br>
+            {% block body %}{% endblock %}
+        </div>
+
+        <script type="text/javascript">
+            document.getElementById("{% block active_link %}{% endblock %}").classList.add("active");
+        </script>
+        {% block js %}{% endblock %}
+
+        <style>
+            body {
+             background-image: url('static/img/base-background.jpg');
+             background-repeat: no-repeat;
+             background-attachment: fixed;
+             background-size: 100% 100%;
+             }
+        </style>
+
+    </body>
+
+</html>
