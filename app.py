@@ -10,7 +10,6 @@ from werkzeug.urls import url_encode
 
 #from utils import databaseUtils
 
-
 UPLOAD_FOLDER = "static/"
 
 
@@ -46,12 +45,13 @@ def root():
     return render_template("index.html")
 
 @app.route('/join_room')
-def about():
+def join_room():
     return render_template("join_room.html")
 
-@app.route("/report")
+
+@app.route("/washers")
 @require_login
-def report():
+def washers():
     return render_template("report.html")
 
 
@@ -90,9 +90,7 @@ def imgUP():
     url = databaseUtils.upload_blob("communityproject-images", filepath, str(randint(0, 999999999999)))
     session['img_url'] = url
     return redirect(url_for("createpost", img_url=url))
-"""
 
-"""
 @app.route("/auth", methods=["POST"])
 def auth():
     if "submit" not in request.form or "user" not in request.form or "pwd" not in request.form:
