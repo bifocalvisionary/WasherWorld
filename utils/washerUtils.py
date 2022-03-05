@@ -11,16 +11,16 @@ DRYER = 1
 
 
 class Machine:
-    def __init__(self, machineID: int, machineType, rating: int):
+    def __init__(self, machineID: int, machineType, rating: int, reviews: list):
         self.state = FREE
         self.user = None
         self.machineType = machineType
         self.machineID = machineID
         self.rating = rating
+        self.reviews = reviews
 
     def contact_user(self, message):
-        print("This Feature is Not Yet Implemented")
-        return -1
+        self.user.contact_user(message)
 
     def set_user(self, user: User):
         self.user = user
