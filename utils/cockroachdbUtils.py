@@ -31,6 +31,7 @@ class Review:
         self.RoomID = RoomID
 
 
+# Examples of stuff
 def create_accounts(conn):
     with conn.cursor() as cur:
         #cur.execute("INSERT INTO washerWorld.Room (RoomID, RoomName) VALUES (2, 'Elingson')")
@@ -87,11 +88,68 @@ def create_review(conn, id, rank, time, writing, machineID, roomID):
     cmd = "INSERT INTO washerWorld.Review (ReviewID, Ranking, TimeSubmitted, WrittenReview, MachineID, RoomID) VALUES (" +\
         str(new_review.ReviewID) + "," + str(new_review.Ranking) + "," + str(new_review.TimeSubmitted) +\
         ",'" + str(new_review.WrittenReview) + "'," + str(new_review.MachineID) + "," + str(new_review.RoomID) + ");"
-    print(cmd)
+    #print(cmd)
     with conn.cursor() as cur:
         cur.execute(cmd)
     conn.commit()
     return new_review
+
+
+# get room entry from RoomID
+def get_entry_room(conn, roomID):
+    cmd = "SELECT * FROM washerworld.room WHERE RoomID = " + str(roomID) + ";"
+    with conn.cursor() as cur:
+        cur.execute(cmd)
+        the_room = cur.fetchall()
+    conn.commit()
+    return the_room
+
+
+# get room entry from machineID
+def get_entry_machine(conn, machineID):
+    cmd = "SELECT * FROM washerworld.machine WHERE MachineID = " + str(machineID) + ";"
+    with conn.cursor() as cur:
+        cur.execute(cmd)
+        the_machine = cur.fetchall()
+    conn.commit()
+    return the_machine
+
+
+# get room entry from reviewID
+def get_entry_review(conn, reviewID):
+    cmd = "SELECT * FROM washerworld.review WHERE ReviewID = " + str(reviewID) + ";"
+    with conn.cursor() as cur:
+        cur.execute(cmd)
+        the_review = cur.fetchall()
+    conn.commit()
+    return the_review
+
+
+# get all entries of table room
+def list_all_rooms(conn):
+    with conn.cursor() as cur:
+        cur.execute("SELECT * FROM washerworld.room")
+        output = cur.fetchall()
+    conn.commit()
+    return output
+
+
+# get all entries of table machine
+def list_all_machines(conn):
+    with conn.cursor() as cur:
+        cur.execute("SELECT * FROM washerworld.machine")
+        output = cur.fetchall()
+    conn.commit()
+    return output
+
+
+# get all entries of table review
+def list_all_reviews(conn):
+    with conn.cursor() as cur:
+        cur.execute("SELECT * FROM washerworld.review")
+        output = cur.fetchall()
+    conn.commit()
+    return output
 
 
 # Completely erases the database and resets it to have no entries.
@@ -110,6 +168,7 @@ def restart_setup(conn):
     conn.commit()
 
 
+# Example of how to use the commands + the connection piece
 if __name__ == '__main__':
     password_thing = input("Enter password:")
     conn = psycopg2.connect(
@@ -124,6 +183,8 @@ if __name__ == '__main__':
     #restart_setup(conn)
     #room = create_room(conn, 2, "Sol")
     #machine = create_machine(conn, 1, "OPEN", 52, "WASHER", 3)
-    review_ex = create_review(conn, 1, 5, "TIMESTAMPTZ '2016-03-26 10:10:10-05:00'", 'pretty cool', 1, 3)
-
+    #review_ex = create_review(conn, 1, 5, "TIMESTAMPTZ '2016-03-26 10:10:10-05:00'", 'pretty cool', 1, 3)
+    print(get_entry_room(conn, 2))
+    print(get_entry_machine(conn,1))
+    print(get_entry_review(conn,1))
 
