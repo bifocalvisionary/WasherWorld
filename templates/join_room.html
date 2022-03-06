@@ -8,53 +8,52 @@
                 <div class="col-sm-12">
                     <div class="d-sm-flex justify-content-between align-items-center mb-2">
                         <div>
-                            <h3 class="font-weight-medium text-dark ">TODO: ROOM ID</h3>
+                            <h3 class="font-weight-medium text-dark ">{{ roomID }}</h3>
                             <h5 class="text-dark ">TODO: ROOM DESC</h5>
                         </div>
                     </div>
                 </div>
             </div>
 
-                    <div class="pricing-box">
-                        <div class="col-sm-4">
+                {% for i in range(4) %}
+                    <div class="row">
+                    {% for j in range(5) %}
+                        <div class="pricing-box">
                             <div class="col-sm-4">
-                                <ul class="pricing-list">
-                                    <img id="washerImage" src="static/imgs/wash-logo.svg" alt="washerImage">
-                                    <li>
-                                        <div class="col-sm-4">
-                                            <h6 class="font-weight-medium title-text">ID:</h6>
-                                            <label id="washer_id">1</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="col-sm-4">
-                                            <h6 class="font-weight-medium title-text">Status:</h6>
-                                            <label id="washer_status">WORKING</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="col-sm-4">
-                                            <h6 class="font-weight-medium title-text">Availability:</h6>
-                                            <label id="aval">FREE</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="col-sm-4">
-                                            <form action="/useMachine" method="post">
-                                                <div class="form-group">
-                                                <input type="hidden" name="washerid" value="1">
-                                                </div>
-                                                <button class="btn btn-success" type="submit">Use Machine</button>
-                                            </form>
-                                            <br>
-                                            <button class="btn btn-danger">Report As Broken</button>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <div class="col-sm-4">
+                                    <ul class="pricing-list">
+                                        <!-- <img id="washerImage" src="static/imgs/wash-logo.svg" alt="washerImage"> -->
+                                        <li>
+                                            <div class="col-sm-4">
+                                                <h6 class="font-weight-medium title-text">ID:</h6>
+                                                <label id="washer_id">{{j}}</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="col-sm-4">
+                                                <h6 class="font-weight-medium title-text">Status:</h6>
+                                                <label id="washer_status">WORKING</label>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="col-sm-4">
+                                                <form action="/useMachine" method="post">
+                                                    <div class="form-group">
+                                                    <input type="hidden" name="washerid" value="1">
+                                                    </div>
+                                                    <button class="btn btn-success" type="submit">Use Machine</button>
+                                                </form>
+                                                <br>
+                                                <button class="btn btn-danger">Report As Broken</button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
+                    {% endfor %}
                     </div>
-
+                {% endfor %}
             </div>
         </div>
     </section>

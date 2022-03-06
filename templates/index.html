@@ -71,22 +71,21 @@
 										  <!-- Join Modal content -->
 										  <div class="modal-content">
 											<span class="close">&times;</span>
-											  <form>
+											  <form method="post" action="/joinModal">
 												  <div class="row">
 													  <div class="col-sm-6">
 														  <div class="form-group">
-															  <input type="text" class="form-control" id="roomID" placeholder="Room ID*">
+															  <input type="text" class="form-control" id='roomID' name='roomID' placeholder="Room ID">
 														  </div>
 													  </div>
 												  </div>
 												  <div class="col-sm-12">
-													  <a href="/join_room" class="btn btn-secondary">JOIN ROOM</a>
+													 <button type="submit" class="btn btn-secondary">JOIN ROOM</button>
+
 												  </div>
 											  </form>
 										  </div>
-
 										</div>
-
 									</div>
 									<div class="mt-5 mt-lg-0">
 										<img src="static/imgs/group.png" alt="marsmello" class="img-fluid" data-aos="zoom-in-up">

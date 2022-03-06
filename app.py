@@ -46,14 +46,22 @@ def root():
     return render_template("index.html")
 
 
-@app.route('/join_room')
-def about():
-    return render_template("join_room.html")
+@app.route('/joinModal', methods=['GET', 'POST'])
+def joinModal():
+    ID = request.form.get('roomID')
+    session['roomID'] = ID
+    print(ID)
+    print(request.form.keys())
+    return redirect("/join_room")
+
+@app.route('/join_room', methods=['GET', 'POST'])
+def join_room():
+    return render_template("join_room.html", roomID=session["roomID"])
 
 
 @app.route("/create_room")
 @require_login
-def report():
+def create_room():
     return render_template("create_room.html")
 
 
