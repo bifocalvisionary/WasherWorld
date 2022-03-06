@@ -37,14 +37,30 @@
                                             <div class="col-sm-2">
                                                 <form action="/useMachine" method="post">
                                                     <div class="form-group">
-                                                    <input type="hidden" name="washerid" value={{washer.machineID}}>
+                                                    <input type="hidden" name="washerid" id='washerid' value={{washer[0]}}>
                                                     </div>
                                                     {% if washer[1] == "OPEN" %}
-                                                    <button type="button" class="btn btn-success">Use Machine</button>
+                                                    <button type="submit" class="btn btn-success">Use Machine</button>
                                                     {% endif %}
                                                 </form>
                                                 <br>
-                                                <button type="button" class="btn btn-danger">Report As Broken</button>
+                                                <form action="/report" method="post">
+                                                    <div class="form-group">
+                                                    <input type="hidden" name="washerid" id='washerid' value={{washer[0]}}>
+                                                    </div>
+                                                    {% if washer[1] != 'BROKEN' %}
+                                                    <button type="submit" class="btn btn-danger">Report As Broken</button>
+                                                    {% endif %}
+                                                </form>
+                                                <br>
+                                                <form action="/report_fix" method="post">
+                                                    <div class="form-group">
+                                                    <input type="hidden" name="washerid1" id='washerid1' value={{washer[0]}}>
+                                                    </div>
+                                                    {% if washer[1] == 'BROKEN' %}
+                                                    <button type="submit" class="btn btn-danger">Report As Fixed</button>
+                                                    {% endif %}
+                                                </form>
                                             </div>
                                         </li>
                                     </ul>
