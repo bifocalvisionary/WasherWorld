@@ -9,7 +9,7 @@ class Room:
         self.RoomName = RoomName
 
     def __str__(self):
-        return "[", RoomID , "," , RoomName, "]"
+        return "[", self.RoomID , "," , self.RoomName, "]"
 
 
 class Machine:
