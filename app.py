@@ -9,9 +9,11 @@ from flask_bootstrap import Bootstrap
 from werkzeug.urls import url_encode
 
 # from utils import databaseUtils
-
+from utils import cockroachdbUtils, washerUtils
 
 UPLOAD_FOLDER = "static/"
+ROOMS = washerUtils.import_rooms_from_database()
+conn = cockroachdbUtils.load_database()
 
 
 def require_login(f):
@@ -56,7 +58,8 @@ def joinModal():
 
 @app.route('/join_room', methods=['GET', 'POST'])
 def join_room():
-    return render_template("join_room.html", roomID=session["roomID"])
+    print(cockroachdbUtils.get_machines_in_room(conn, session["roomID"])[0][0])
+    return render_template("join_room.html", roomID=session["roomID"], washers=cockroachdbUtils.get_machines_in_room(conn, session["roomID"]))
 
 
 @app.route("/create_room")

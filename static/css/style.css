@@ -9155,9 +9155,9 @@ pre code {
 
 .row {
   display: flex;
-  flex-wrap: nowrap;
-  margin-right: auto;
-  margin-left: auto;
+  flex-wrap: wrap;
+  margin-right: -14px;
+  margin-left: -14px;
 }
 
 .no-gutters {

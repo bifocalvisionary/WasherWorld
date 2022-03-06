@@ -14,10 +14,8 @@
                     </div>
                 </div>
             </div>
-
-                {% for i in range(1) %}
                     <div class="row">
-                    {% for j in range(2) %}
+                        {% for washer in washers %}
                         <div class="pricing-box">
                             <div class="col-sm-2">
                                 <div class="col-sm-2">
@@ -26,25 +24,27 @@
                                         <li>
                                             <div class="col-sm-2">
                                                 <h6 class="font-weight-medium title-text">ID:</h6>
-                                                <label id="washer_id">{{j}}</label>
+                                                <label id="washer_id">{{ washer[0] }}</label>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="col-sm-2">
                                                 <h6 class="font-weight-medium title-text">Status:</h6>
-                                                <label id="washer_status">WORKING</label>
+                                                <label id="washer_status">{{ washer[1] }}</label>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="col-sm-2">
                                                 <form action="/useMachine" method="post">
                                                     <div class="form-group">
-                                                    <input type="hidden" name="washerid" value="1">
+                                                    <input type="hidden" name="washerid" value={{washer.machineID}}>
                                                     </div>
+                                                    {% if washer[1] == "OPEN" %}
                                                     <button class="btn btn-success" type="submit">Use Machine</button>
+                                                    {% endif %}
                                                 </form>
                                                 <br>
-                                                <button class="btn btn-danger">Report As Broken</button>
+                                                <button type="" class="btn btn-danger">Report As Broken</button>
                                             </div>
                                         </li>
                                     </ul>
@@ -53,7 +53,7 @@
                         </div>
                     {% endfor %}
                     </div>
-                {% endfor %}
+
             </div>
         </div>
     </section>
