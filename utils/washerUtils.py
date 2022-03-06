@@ -1,6 +1,5 @@
-from userUtils import User
-from reviewUtils import import_review_db
-from cockroachdbUtils import *
+from utils.cockroachdbUtils import *
+from utils.reviewUtils import import_review_db
 
 FREE = 0
 FULL = 1
