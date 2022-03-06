@@ -87,11 +87,41 @@ def create_review(conn, id, rank, time, writing, machineID, roomID):
     cmd = "INSERT INTO washerWorld.Review (ReviewID, Ranking, TimeSubmitted, WrittenReview, MachineID, RoomID) VALUES (" +\
         str(new_review.ReviewID) + "," + str(new_review.Ranking) + "," + str(new_review.TimeSubmitted) +\
         ",'" + str(new_review.WrittenReview) + "'," + str(new_review.MachineID) + "," + str(new_review.RoomID) + ");"
-    print(cmd)
+    #print(cmd)
     with conn.cursor() as cur:
         cur.execute(cmd)
     conn.commit()
     return new_review
+
+
+# get room entry from RoomID
+def get_entry_room(curr, roomID):
+    cmd = "SELECT * FROM washerworld.room WHERE RoomID = " + str(roomID) + ";"
+    with conn.cursor() as cur:
+        cur.execute(cmd)
+        the_room = cur.fetchall()
+    conn.commit()
+    return the_room
+
+
+# get room entry from RoomID
+def get_entry_machine(curr, machineID):
+    cmd = "SELECT * FROM washerworld.machine WHERE MachineID = " + str(machineID) + ";"
+    with conn.cursor() as cur:
+        cur.execute(cmd)
+        the_machine = cur.fetchall()
+    conn.commit()
+    return the_machine
+
+
+# get room entry from RoomID
+def get_entry_review(curr, reviewID):
+    cmd = "SELECT * FROM washerworld.review WHERE ReviewID = " + str(reviewID) + ";"
+    with conn.cursor() as cur:
+        cur.execute(cmd)
+        the_review = cur.fetchall()
+    conn.commit()
+    return the_review
 
 
 # Completely erases the database and resets it to have no entries.
@@ -124,6 +154,8 @@ if __name__ == '__main__':
     #restart_setup(conn)
     #room = create_room(conn, 2, "Sol")
     #machine = create_machine(conn, 1, "OPEN", 52, "WASHER", 3)
-    review_ex = create_review(conn, 1, 5, "TIMESTAMPTZ '2016-03-26 10:10:10-05:00'", 'pretty cool', 1, 3)
-
+    #review_ex = create_review(conn, 1, 5, "TIMESTAMPTZ '2016-03-26 10:10:10-05:00'", 'pretty cool', 1, 3)
+    print(get_entry_room(conn, 2))
+    print(get_entry_machine(conn,1))
+    print(get_entry_review(conn,1))
 
