@@ -18,7 +18,7 @@ def require_login(f):
     @wraps(f)
     def inner(*args, **kwargs):
         if 'user' not in session:
-            flash("Please log in to create posts")
+            flash("Please log in to create create a room!")
             return redirect(url_for("login"))
         else:
             return f(*args, **kwargs)

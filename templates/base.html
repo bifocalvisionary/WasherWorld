@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="static/vendors/owl.carousel/css/owl.theme.default.min.css">
 		<!--<link rel="stylesheet" href="static/vendors/aos/css/aos.css"> -->
 		<link rel="stylesheet" href="static/vendors/jquery-flipster/css/jquery.flipster.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 		<link rel="stylesheet" href="static/css/style.css">
         <link rel="shortcut icon" href="static/imgs/favicon.png" />
         {% block css %}{% endblock %}
@@ -36,6 +37,11 @@
 				</div>
 			</div>
 		</nav>
+
+		{% for message in get_flashed_messages() %}
+            <h3 class="text-center alert alert-danger">{{ message }}</h3>
+		{% endfor %}
+
 		<footer class="footer">
 			<div class="footer-bottom">
 				<div class="container">
@@ -52,5 +58,6 @@
 		<script src="static/vendors/aos/js/aos.js"></script>
 		<script src="static/vendors/jquery-flipster/js/jquery.flipster.min.js"></script>
 		<script src="static/js/template.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='static/js/bootstrap.min.js' ) }}"></script>
     </body>
 </html>
