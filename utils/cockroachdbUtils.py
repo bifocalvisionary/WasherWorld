@@ -269,7 +269,6 @@ if __name__ == '__main__':
         options='--cluster=stung-whale-219'
     )
     #print(get_machines_in_room(conn, 1))
-    #wipe_setup(conn)
     #restart_setup(conn)
     #room = create_room(conn, 2, "Sol", "Hendrick")
     #room = create_room(conn, 1, "Elingson", "Cameron")
