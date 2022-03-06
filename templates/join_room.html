@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
 {% block body %}
+
+{% if user.id == room.id %}
+    <button id="addMachine" onclick="document.location.href='/addMachine'">Add Machine</button>
+    <button id="remMachine" onclick="document.location.href='/addMachine'">Remove Machine</button>
+{% endif %}
+
 <section class="pricing-list" id="plans">
         <div class="container">
             <div class="row" data-aos="fade-up" data-aos-offset="-500">
@@ -13,52 +19,35 @@
                     </div>
                 </div>
             </div>
-            <div class="row"  data-aos="fade-up" data-aos-offset="-300">
-                <div class="col-sm-4">
-                    <div class="pricing-box">
-                        <img src="images/starter.svg" alt="">
-                        <h6 class="font-weight-medium title-text">Washer #1</h6>
-                        <h1 class="text-amount mb-4 mt-2">$23</h1>
-                        <ul class="pricing-list">
-                            <li>Create a free website</li>
-                            <li>Connect Domain</li>
-                            <li>Business and ecommerce</li>
-                            <li>Idea for smaller professional websites</li>
-                            <li>Web space</li>
-                        </ul>
-                        <a href="#" class="btn btn-outline-primary">Puchase Now</a>
+                {% for washer in washers %}
+                    <div class="card">
+                        <div class="col">
+                            <img id="washerImage" src="{{ 'static/imgs/' + washer.png }}" alt="washerImage">
+                            <div class="row">
+                                <div class="col">
+                                    <label id="id_label">ID</label>
+                                    <label id="washer_id">{{ washer.id }}</label>
+                                </div>
+                                <div class="col">
+                                    <label id="status_label">Status</label>
+                                    <label id="washer_status">{{ washer.status }}</label>
+                                </div>
+                                <div class="col">
+                                    <label id="aval_label">Availability</label>
+                                    <label id="aval">{{ washer.aval }}</label>
+                                </div>
+                                <div class="col">
+                                    <form action="/useMachine" method="post">
+                                        <input type="hidden" name="washerid" value="{{ washer.id }}">
+                                        <button class="btn" type="submit">Use Machine</button>
+                                    </form>
+                                    <br>
+                                    <button class="btn">Report As Broken</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="pricing-box selected">
-                        <img src="images/proffessional.svg" alt="starter">
-                        <h6 class="font-weight-medium title-text">Professional</h6>
-                        <h1 class="text-amount mb-4 mt-2">$45</h1>
-                        <ul class="pricing-list">
-                            <li>Create a free website</li>
-                            <li>Connect Domain</li>
-                            <li>Business and ecommerce</li>
-                            <li>Idea for smaller professional websites</li>
-                            <li>Web space</li>
-                        </ul>
-                        <a href="#" class="btn btn-primary">Puchase Now</a>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="pricing-box">
-                        <img src="images/premium.svg" alt="starter">
-                        <h6 class="font-weight-medium title-text">Premium</h6>
-                        <h1 class="text-amount mb-4 mt-2">$87</h1>
-                        <ul class="pricing-list">
-                            <li>Create a free website</li>
-                            <li>Connect Domain</li>
-                            <li>Business and ecommerce</li>
-                            <li>Idea for smaller professional websites</li>
-                            <li>Web space</li>
-                        </ul>
-                        <a href="#" class="btn btn-outline-primary">Puchase Now</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
