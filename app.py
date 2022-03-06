@@ -120,13 +120,23 @@ def logout():
 @app.route('/sms', methods=["GET", "POST"])
 def sms():
 
-    message = twilioUtils.receive_sms_message(request)
+	message = twilioUtils.receive_sms_message(request)
+	room, machine = message.strip().split(" ")
 
-    resp = MessagingResponse()
+	if not (room and machine):
+		resp = MessagingResponse()
+		resp.message("Please Enter your input in the format (Room# Machine#")
+		return str(resp)
 
-    resp.message(message)
+	room = int(room.strip())
+	machine = int(machine.strip())
 
-    return str(resp)
+	resp = MessagingResponse()
+	reply = "You have reserved machine " + str(machine) + " in room " + str(room) 
+
+	resp.message(reply)
+
+	return str(resp)
 
 """
 #If Uploading Images Is Required
