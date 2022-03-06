@@ -1,4 +1,5 @@
 from userUtils import User
+from reviewUtils import import_review_db
 from cockroachdbUtils import *
 
 FREE = 0
@@ -50,11 +51,11 @@ class LaundryRoom:
             if dryer.machineID == machineID:
                 raise Exception("Machine ID is not unique")
 
-        if machineType == WASHER:
-            self.washers.append(Machine(machineID, WASHER, rating))
+        if machineType == WASHER or machineType == "WASHER":
+            self.washers.append(Machine(machineID, WASHER, rating, []))
 
-        elif machineType == DRYER:
-            self.washers.append(Machine(machineID, DRYER, rating))
+        elif machineType == DRYER or machineType == "DRYER":
+            self.washers.append(Machine(machineID, DRYER, rating, []))
 
         else:
             raise Exception("Machine Type is not Valid (WASHER/DRYER)")
@@ -74,35 +75,53 @@ class LaundryRoom:
 
 
 def import_rooms_from_database():
+    conn = load_database()
+
     rooms = list()
 
     # Get All Room Entries From Database
-    rawRooms = list_all_rooms()
-
-    # Parse Output as Array of tuples
-    roomTuples = exec(rawRooms)
+    rawRooms = list_all_rooms(conn)
 
     # Generate Objects From Array Of Tuples
-    for roomTuple in roomTuples:
+    for roomTuple in rawRooms:
         rooms.append(import_room(roomTuple))
 
-    # Get all Machines from database
-    rawMachines = list_all_machines()
-
-    # Parse Output as Array of Tuples
-    machineTuples = exec(rawMachines)
+    # Get all Machines and review from database
+    rawMachines = list_all_machines(conn)
+    rawReviews = list_all_reviews(conn)
 
     # Using each machine's ID assign them to a room
-    for machineTuple in machineTuples:
+    for machineTuple in rawMachines:
+        reviews = list()
+        #Build a list of reviews
+
+        for review in rawReviews:
+            if review[4] == machineTuple[0]:
+                reviews.append(import_review_db(review))
 
         #Search for a room with a matching ID
-        for room in rooms:
-            if room.roomID == machineTuple[4]:
-                room.add_machine(machineTuple[0], machineTuple[3], 3)
+        for _room in rooms:
+            if _room.roomID == machineTuple[0]:
+                print(machineTuple[3])
+                _room.add_machine(machineTuple[0], machineTuple[3], 3)
 
     # Return an array of rooms
-    return -1
+    return rooms
 
 
-def import_room():
-    return
+def import_room(roomTuple):
+    return LaundryRoom(None, roomTuple[0])
+
+
+def import_machine(machineTuple):
+    return Machine(machineTuple[0], machineTuple[3], 3)
+
+
+if __name__ == "__main__":
+    rooms = import_rooms_from_database()
+    for room in rooms:
+        for machine in room.washers:
+            print(machine.machineID)
+
+        for machine in room.dryers:
+            print(machine.machineID)

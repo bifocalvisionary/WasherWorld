@@ -1,3 +1,5 @@
+import os
+
 import psycopg2
 import logging
 import time
@@ -168,13 +170,25 @@ def restart_setup(conn):
     conn.commit()
 
 
-# Example of how to use the commands + the connection piece
-if __name__ == '__main__':
-    password_thing = input("Enter password:")
+def load_database():
     conn = psycopg2.connect(
         database='defaultdb',
         user='cameron',
-        password=password_thing,
+        password=os.environ["DB_PW"],
+        sslmode='verify-full',
+        port=26257,
+        host='free-tier11.gcp-us-east1.cockroachlabs.cloud',
+        options='--cluster=stung-whale-219'
+    )
+    return conn
+
+
+# Example of how to use the commands + the connection piece
+if __name__ == '__main__':
+    conn = psycopg2.connect(
+        database='defaultdb',
+        user='cameron',
+        password=os.environ["DB_PW"],
         sslmode='verify-full',
         port=26257,
         host='free-tier11.gcp-us-east1.cockroachlabs.cloud',
