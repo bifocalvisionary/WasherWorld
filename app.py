@@ -13,7 +13,7 @@ from werkzeug.urls import url_encode
 # from utils import databaseUtils
 from utils import cockroachdbUtils, washerUtils
 # from utils import databaseUtils, twilioUtils
-from utils import twilioUtils
+#from utils import twilioUtils
 
 
 UPLOAD_FOLDER = "static/"
@@ -73,6 +73,8 @@ def useMachine():
     ID = request.form.get('washerid')
     session['washerid'] = ID
     cockroachdbUtils.change_state_of_machine(conn, ID, "RUNNING")
+    #TODO: TEXT WHEN DONE
+    phone_num = request.form.get('phone')
     return redirect("/join_room")
 
 
