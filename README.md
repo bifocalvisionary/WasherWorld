@@ -8,4 +8,4 @@ website that allows students to check the availablility, quality, and the status
 It also allows students to use a text message system to automatically alert them of when their clothes are ready, as well as updating the app for other students.
 
 ### Visit our Site!
-www.washmy.tech
+http://washmy.tech/
