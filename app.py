@@ -87,13 +87,14 @@ def logout():
 
 @app.route('/sms', methods=["GET", "POST"])
 def sms():
-    message = twilioUtils.receive_sms_message(request.values.get('Body', None))
+
+    message = twilioUtils.receive_sms_message(request)
 
     resp = MessagingResponse()
 
     resp.message(message)
 
-    return redirect('/')
+    return str(resp)
 
 """
 #If Uploading Images Is Required
