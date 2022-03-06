@@ -62,7 +62,7 @@ def join_room():
 
 @app.route('/useMachine', methods=['GET', 'POST'])
 def useMachine():
-
+    return 0
 
 @app.route("/create_room")
 @require_login
