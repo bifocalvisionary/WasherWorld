@@ -125,6 +125,16 @@ def create_review(conn, id, rank, time, writing, machineID, roomID):
     return new_review
 
 
+# get all machines in specified room
+def get_machines_in_room(conn, roomID):
+    cmd = "SELECT * FROM washerworld.machine WHERE RoomID = " + str(roomID) + ";"
+    with conn.cursor() as cur:
+        cur.execute(cmd)
+        the_room = cur.fetchall()
+    conn.commit()
+    return the_room
+
+
 # get room entry from RoomID
 def get_entry_room(conn, roomID):
     cmd = "SELECT * FROM washerworld.room WHERE RoomID = " + str(roomID) + ";"
@@ -258,7 +268,7 @@ if __name__ == '__main__':
         host='free-tier11.gcp-us-east1.cockroachlabs.cloud',
         options='--cluster=stung-whale-219'
     )
-    #wipe_setup(conn)
+    #print(get_machines_in_room(conn, 1))
     #restart_setup(conn)
     #room = create_room(conn, 2, "Sol", "Hendrick")
     #room = create_room(conn, 1, "Elingson", "Cameron")
