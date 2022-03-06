@@ -3,22 +3,37 @@
 {% block active_link %}login-link{% endblock %}
 
 {% block body %}
-<center class="form-holder">
-    <div class="form-cell">
-        <h3 class="text-center">Login</h3>
-        <form action="/auth" method="POST">
-            <div class="form-group">
-                <label for="user">Username:</label><br>
-                <input required type="text" name="user" id="user">
+<section class="contactus" id="login">
+    <div class="container">
+        <div class="row mb-5 pb-5">
+            <div class="col-sm-12">
+                <h3 class="font-weight-medium text-dark mt-5 mt-lg-0">Login</h3>
+                <form action="/auth" method="POST">
+                    <div class="col">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input required type="text" class="form-control" name="user" id="user" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input required type="password" class="form-control" name="pwd" id="pwd" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="submit" class="btn btn-secondary2" name="submit" value="Login">
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="pwd">Password:</label><br>
-                <input required type="password" name="pwd" id="pwd">
+            <div class="col-sm-12">
+                <h5 class="text-dark mb-5">Not A User?</h5>
+                <a href="/signup" class="btn btn-secondary2">SIGN UP</a>
             </div>
-            <input type="submit" class="btn btn-light" name="submit" value="Login">
-        </form>
+        </div>
     </div>
-
+</section>
+<!--
     <div class="form-cell">
         <h3 class="text-center">Sign Up</h3>
         <form action="/auth" method="POST">
@@ -37,8 +52,7 @@
             </div>
             <input type="submit" id="createSubmit" class="btn btn-light" name="submit" value="Create Account">
         </form>
-    </div>
-</center>
+    </div> -->
 {% endblock %}
 
 {% block js %}

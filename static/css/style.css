@@ -10392,6 +10392,7 @@ textarea.form-control {
 
 .form-group {
   margin-bottom: 1rem;
+  align-content: center;
 }
 
 .form-text {
@@ -10856,6 +10857,40 @@ fieldset:disabled a.btn {
 }
 
 .btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-secondary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(60, 167, 255, 0.5);
+}
+
+.btn-secondary2 {
+  color: #fff;
+  background-color: #1998ff;
+  border-color: #1998ff;
+}
+
+.btn-secondary2:hover {
+  color: #fff;
+  background-color: #0085f2;
+  border-color: #007ee5;
+}
+
+.btn-secondary2:focus, .btn-secondary.focus {
+  box-shadow: 0 0 0 0.2rem rgba(60, 167, 255, 0.5);
+}
+
+.btn-secondary2.disabled, .btn-secondary:disabled {
+  color: #fff;
+  background-color: #1998ff;
+  border-color: #1998ff;
+}
+
+.btn-secondary2:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #007ee5;
+  border-color: #0077d8;
+}
+
+.btn-secondary2:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-secondary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(60, 167, 255, 0.5);
 }
@@ -18264,6 +18299,7 @@ h2, .h2 {
 }
 
 h3, .h3 {
+  text-align: center;
   font-size: 2.187rem;
 }
 
@@ -18284,6 +18320,7 @@ h4, .h4 {
 }
 
 h5, .h5 {
+  text-align: center;
   font-size: 1.25rem;
 }
 
