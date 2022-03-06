@@ -9413,6 +9413,7 @@ pre code {
   .col-sm-11 {
     flex: 0 0 91.66667%;
     max-width: 91.66667%;
+    position: center;
   }
   .col-sm-12 {
     flex: 0 0 100%;
@@ -10392,7 +10393,7 @@ textarea.form-control {
 
 .form-group {
   margin-bottom: 1rem;
-  align-content: center;
+  align
 }
 
 .form-text {
@@ -18817,7 +18818,7 @@ section {
   border-radius: 4px;
   border: solid 1px #f1efef;
   background-color: #ffffff;
-  padding: 47px;
+  padding: 2px;
   text-align: center;
   margin-top: 40px;
   -webkit-transition: all 1s;

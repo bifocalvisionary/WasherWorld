@@ -8,7 +8,7 @@ from flask import Flask, render_template, request, redirect, flash, url_for, ses
 from flask_bootstrap import Bootstrap
 from werkzeug.urls import url_encode
 
-#from utils import databaseUtils
+# from utils import databaseUtils
 
 
 UPLOAD_FOLDER = "static/"
@@ -45,20 +45,30 @@ def modify_query(origin, **new_values):
 def root():
     return render_template("index.html")
 
-@app.route('/join_room')
-def about():
-    return render_template("join_room.html")
+
+@app.route('/joinModal', methods=['GET', 'POST'])
+def joinModal():
+    ID = request.form.get('roomID')
+    session['roomID'] = ID
+    print(ID)
+    print(request.form.keys())
+    return redirect("/join_room")
+
+@app.route('/join_room', methods=['GET', 'POST'])
+def join_room():
+    return render_template("join_room.html", roomID=session["roomID"])
+
 
 @app.route("/create_room")
 @require_login
-def report():
+def create_room():
     return render_template("create_room.html")
 
 
 @app.route("/report_button", methods=["POST"])
 def report_button():
     flash("Thank you for your support!")
-    #temp = databaseUtils.add_report(request.form['report'])
+    # temp = databaseUtils.add_report(request.form['report'])
     return redirect('/report')
 
 
@@ -72,6 +82,7 @@ def logout():
     if 'user' in session:
         session.pop('user')
     return redirect(url_for('login'))
+
 
 """
 #If Uploading Images Is Required
@@ -122,7 +133,6 @@ def auth():
             flash('This username already exists!')
             return redirect(url_for('login'))
 """
-
 
 if __name__ == '__main__':
     app.run()
