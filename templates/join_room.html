@@ -1,1 +1,54 @@
 {% extends "base.html" %}
+
+{% block body %}
+
+{% if user.id == room.id %}
+    <button id="addMachine" onclick="document.location.href='/addMachine'">Add Machine</button>
+    <button id="remMachine" onclick="document.location.href='/addMachine'">Remove Machine</button>
+{% endif %}
+
+<section class="pricing-list" id="plans">
+        <div class="container">
+            <div class="row" data-aos="fade-up" data-aos-offset="-500">
+                <div class="col-sm-12">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-2">
+                        <div>
+                            <h3 class="font-weight-medium text-dark ">TODO: ROOM ID</h3>
+                            <h5 class="text-dark ">TODO: ROOM DESC</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                {% for washer in washers %}
+                    <div class="card">
+                        <div class="col">
+                            <img id="washerImage" src="{{ 'static/imgs/' + washer.png }}" alt="washerImage">
+                            <div class="row">
+                                <div class="col">
+                                    <label id="id_label">ID</label>
+                                    <label id="washer_id">{{ washer.id }}</label>
+                                </div>
+                                <div class="col">
+                                    <label id="status_label">Status</label>
+                                    <label id="washer_status">{{ washer.status }}</label>
+                                </div>
+                                <div class="col">
+                                    <label id="aval_label">Availability</label>
+                                    <label id="aval">{{ washer.aval }}</label>
+                                </div>
+                                <div class="col">
+                                    <form action="/useMachine" method="post">
+                                        <input type="hidden" name="washerid" value="{{ washer.id }}">
+                                        <button class="btn" type="submit">Use Machine</button>
+                                    </form>
+                                    <br>
+                                    <button class="btn">Report As Broken</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
