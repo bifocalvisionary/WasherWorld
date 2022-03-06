@@ -6,10 +6,11 @@ from random import randint
 
 from flask import Flask, render_template, request, redirect, flash, url_for, session
 from flask_bootstrap import Bootstrap
+from twilio.twiml.messaging_response import MessagingResponse
 from werkzeug.urls import url_encode
 
-# from utils import databaseUtils
-
+# from utils import databaseUtils, twilioUtils
+from utils import twilioUtils
 
 UPLOAD_FOLDER = "static/"
 
@@ -83,6 +84,16 @@ def logout():
         session.pop('user')
     return redirect(url_for('login'))
 
+
+@app.route('/sms', methods=["GET", "POST"])
+def sms():
+    message = twilioUtils.receive_sms_message(request.values.get('Body', None))
+
+    resp = MessagingResponse()
+
+    resp.message(message)
+
+    return redirect('/')
 
 """
 #If Uploading Images Is Required
