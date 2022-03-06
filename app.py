@@ -58,8 +58,10 @@ def joinModal():
 
 @app.route('/join_room', methods=['GET', 'POST'])
 def join_room():
-    print(cockroachdbUtils.get_machines_in_room(conn, session["roomID"])[0][0])
     return render_template("join_room.html", roomID=session["roomID"], washers=cockroachdbUtils.get_machines_in_room(conn, session["roomID"]))
+
+@app.route('/useMachine', methods=['GET', 'POST'])
+def useMachine():
 
 
 @app.route("/create_room")
