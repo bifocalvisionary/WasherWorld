@@ -1,4 +1,5 @@
 from userUtils import User
+from cockroachdbUtils import *
 
 FREE = 0
 FULL = 1
@@ -70,3 +71,38 @@ class LaundryRoom:
                 return
 
         raise Exception("There is no machine with ID " + str(machineID))
+
+
+def import_rooms_from_database():
+    rooms = list()
+
+    # Get All Room Entries From Database
+    rawRooms = list_all_rooms()
+
+    # Parse Output as Array of tuples
+    roomTuples = exec(rawRooms)
+
+    # Generate Objects From Array Of Tuples
+    for roomTuple in roomTuples:
+        rooms.append(import_room(roomTuple))
+
+    # Get all Machines from database
+    rawMachines = list_all_machines()
+
+    # Parse Output as Array of Tuples
+    machineTuples = exec(rawMachines)
+
+    # Using each machine's ID assign them to a room
+    for machineTuple in machineTuples:
+
+        #Search for a room with a matching ID
+        for room in rooms:
+            if room.roomID == machineTuple[4]:
+                room.add_machine(machineTuple[0], machineTuple[3], 3)
+
+    # Return an array of rooms
+    return -1
+
+
+def import_room():
+    return
