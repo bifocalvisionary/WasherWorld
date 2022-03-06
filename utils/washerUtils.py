@@ -27,9 +27,11 @@ class Machine:
     def set_user(self, user: User):
         self.user = user
 
-    def set_state(self, state : int):
+    def set_state(self, state: int):
         if state in WASHER_STATES:
+            conn = load_database()
             self.state = state
+            change_state_of_machine(conn, self.machineID, state)
             return
 
         raise Exception("Desired State is Invalid(FREE, RUNNING, FULL, BROKEN")
