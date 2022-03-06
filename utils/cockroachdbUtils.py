@@ -132,6 +132,7 @@ def get_machines_in_room(conn, roomID):
         cur.execute(cmd)
         the_room = cur.fetchall()
     conn.commit()
+    print(the_room[0])
     return the_room
 
 
