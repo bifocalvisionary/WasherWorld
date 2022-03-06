@@ -5,7 +5,12 @@ Hendrick Ducasse
 A Set of utilities for managing discrete user contact info
 """
 
-CONTACT_MODES = {(0, "call"), (1, "text"), (2, "email")}
+CALL = 0
+TEXT = 1
+EMAIL = 2
+
+CONTACT_MODES = {CALL, TEXT, EMAIL}
+
 
 class User:
     def __init__(self, name, phone, email, preferredMode):
