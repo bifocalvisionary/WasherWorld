@@ -8,10 +8,11 @@ from flask import Flask, render_template, request, redirect, flash, url_for, ses
 from flask_bootstrap import Bootstrap
 from werkzeug.urls import url_encode
 
-# from utils import databaseUtils
-
+from utils import cockroachdbUtils, washerUtils
 
 UPLOAD_FOLDER = "static/"
+ROOMS = washerUtils.import_rooms_from_database()
+conn = cockroachdbUtils.load_database()
 
 
 def require_login(f):
@@ -54,9 +55,35 @@ def joinModal():
     print(request.form.keys())
     return redirect("/join_room")
 
+
 @app.route('/join_room', methods=['GET', 'POST'])
 def join_room():
-    return render_template("join_room.html", roomID=session["roomID"])
+    return render_template("join_room.html", roomID=session["roomID"],
+                           washers=cockroachdbUtils.get_machines_in_room(conn, session["roomID"]))
+
+
+@app.route('/useMachine', methods=['GET', 'POST'])
+def useMachine():
+    ID = request.form.get('washerid')
+    session['washerid'] = ID
+    cockroachdbUtils.change_state_of_machine(conn, ID, "RUNNING")
+    return redirect("/join_room")
+
+
+@app.route('/report', methods=['GET', 'POST'])
+def report():
+    ID = request.form.get('washerid')
+    session['washerid'] = ID
+    cockroachdbUtils.change_state_of_machine(conn, ID, 'BROKEN')
+    return redirect("/join_room")
+
+
+@app.route('/report_fix', methods=['GET', 'POST'])
+def report_fix():
+    ID = request.form.get('washerid1')
+    session['washerid1'] = ID
+    cockroachdbUtils.change_state_of_machine(conn, ID, 'OPEN')
+    return redirect("/join_room")
 
 
 @app.route("/create_room")
